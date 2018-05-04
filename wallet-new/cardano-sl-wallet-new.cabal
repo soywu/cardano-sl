@@ -414,6 +414,7 @@ test-suite wallet-unit-tests
                     , constraints
                     , containers
                     , data-default
+                    , directory
                     , formatting
                     , hspec
                     , lens
