@@ -7998,6 +7998,12 @@ inherit (pkgs) mesa;};
          , swagger2, text, text-format, time, time-units, tls, transformers
          , universum, unliftio, unliftio-core, unordered-containers, vector
          , wai, wai-cors, wai-extra, warp, x509, x509-store, yaml
+         , servant-swagger, servant-swagger-ui, sqlite-simple
+         , sqlite-simple-errors, stdenv, stm, string-conv, swagger2, text
+         , text-format, time, time-units, tls, transformers, universum
+         , unliftio, unliftio-core, unordered-containers, vector, wai
+         , wai-cors, warp, yaml
+>>>>>>> ff8ade3c5... [CBR-255] Last valiant attempt to weed out deps - regen stack2nix
          }:
          mkDerivation {
            pname = "cardano-sl-wallet-new";
