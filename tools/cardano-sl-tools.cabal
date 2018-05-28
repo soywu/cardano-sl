@@ -48,7 +48,7 @@ executable dbgen
                      , cardano-sl-txp
                      , cardano-sl-txp-test
                      , cardano-sl-util
-                     , cardano-sl-wallet
+                     , csl-wallet
                      , containers
                      , cryptonite
                      , data-default

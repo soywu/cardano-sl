@@ -231,8 +231,8 @@ ghc-options:
   cardano-sl-txp:        -Werror -fwarn-redundant-constraints
   cardano-sl-update:     -Werror -fwarn-redundant-constraints
   cardano-sl-util:       -Werror -fwarn-redundant-constraints
-  cardano-sl-wallet-new: -Werror -fwarn-redundant-constraints
-  cardano-sl-wallet:     -Werror -fwarn-redundant-constraints
+  csl-wallet-new:        -Werror -fwarn-redundant-constraints
+  csl-wallet:            -Werror -fwarn-redundant-constraints
   cardano-sl:            -Werror -fwarn-redundant-constraints
 
 # The 'swagger2' has a broken Haddock with GHC 8.0. We can remove this flag

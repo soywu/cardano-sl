@@ -1,4 +1,4 @@
-name:                cardano-sl-wallet-new
+name:                csl-wallet-new
 version:             1.1.1
 synopsis:            The Wallet Backend for a Cardano node.
 description:         Please see README.md
@@ -102,7 +102,7 @@ library
                        Cardano.Wallet.WalletLayer.Legacy
                        Cardano.Wallet.WalletLayer.QuickCheck
                        Cardano.Wallet.WalletLayer.Error
-                       Paths_cardano_sl_wallet_new
+                       Paths_csl_wallet_new
   ghc-options:         -Wall
 
   build-depends:       base
@@ -124,7 +124,7 @@ library
                      , cardano-sl-txp
                      , cardano-sl-update
                      , cardano-sl-util
-                     , cardano-sl-wallet
+                     , csl-wallet
                      , conduit
                      , connection
                      , containers
@@ -210,8 +210,8 @@ executable cardano-node
                      , cardano-sl-ssc
                      , cardano-sl-txp
                      , cardano-sl-util
-                     , cardano-sl-wallet
-                     , cardano-sl-wallet-new
+                     , csl-wallet
+                     , csl-wallet-new
                      , log-warper
                      , stm
                      , text
@@ -251,7 +251,7 @@ executable cardano-generate-swagger-file
                      , aeson
                      , cardano-sl-util
                      , cardano-sl-core
-                     , cardano-sl-wallet-new
+                     , csl-wallet-new
                      , optparse-applicative
                      , swagger2
                      , universum >= 0.1.11
@@ -288,8 +288,8 @@ executable cardano-integration-test
                      , aeson-pretty
                      , bytestring
                      , cardano-sl-core
-                     , cardano-sl-wallet
-                     , cardano-sl-wallet-new
+                     , csl-wallet
+                     , csl-wallet-new
                      , containers
                      , exceptions
                      , formatting
@@ -407,7 +407,7 @@ test-suite wallet-unit-tests
                     , cardano-sl-txp-test
                     , cardano-sl-update
                     , cardano-sl-util
-                    , cardano-sl-wallet-new
+                    , csl-wallet-new
                     , constraints
                     , containers
                     , data-default
@@ -477,8 +477,8 @@ test-suite wallet-new-specs
                     , cardano-sl-txp
                     , cardano-sl-util
                     , cardano-sl-util-test
-                    , cardano-sl-wallet
-                    , cardano-sl-wallet-new
+                    , csl-wallet
+                    , csl-wallet-new
                     , data-default
                     , directory
                     , directory
@@ -498,7 +498,7 @@ test-suite wallet-new-specs
                     , time
                     , universum
 
-benchmark cardano-sl-wallet-new-bench
+benchmark wallet-new-bench
   hs-source-dirs:      bench
   main-is:             Main.hs
   other-modules:       Bench.Cardano.Wallet.Config
@@ -531,7 +531,7 @@ benchmark cardano-sl-wallet-new-bench
                      , bytestring
                      , cardano-sl-client
                      , cardano-sl-core
-                     , cardano-sl-wallet
+                     , csl-wallet
                      , cassava
                      , connection
                      , cryptonite
