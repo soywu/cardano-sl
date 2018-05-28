@@ -53,11 +53,10 @@ import           Universum
 import           Control.Monad.Trans (MonadTrans (..))
 import           Control.Monad.Trans.Resource (ResourceT, transResourceT)
 import           Data.Conduit (ConduitT, transPipe)
-import qualified Data.ByteString.Lazy as BSL
 import qualified Database.RocksDB as Rocks
 import           Serokell.Data.Memory.Units (Byte)
 
-import           Pos.Binary.Class (Bi, decodeFull)
+import           Pos.Binary.Class (Bi, decodeFull')
 import           Pos.Binary.Core ()
 import           Pos.Core (Block, BlockVersionData (..), EpochIndex, HasCoreConfiguration, HeaderHash,
                            isBootstrapEra)
@@ -86,7 +85,7 @@ class DBIteratorClass i where
 type IterType i = (IterKey i, IterValue i)
 
 newtype Serialized a = Serialized
-    { unSerialized :: BSL.ByteString
+    { unSerialized :: ByteString
     }
 
 data SerBlock
@@ -131,7 +130,7 @@ getDeserialized
     => (x -> m (Maybe (Serialized tag))) -> x -> m (Maybe v)
 getDeserialized getter x = getter x >>= \case
     Nothing  -> pure Nothing
-    Just ser -> eitherToThrow $ bimap DBMalformed Just $ decodeFull $ unSerialized ser
+    Just ser -> eitherToThrow $ bimap DBMalformed Just $ decodeFull' $ unSerialized ser
 
 getBlock :: MonadBlockDBRead m => HeaderHash -> m (Maybe Block)
 getBlock = getDeserialized dbGetSerBlock

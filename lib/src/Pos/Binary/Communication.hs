@@ -8,13 +8,14 @@ module Pos.Binary.Communication
 
 import           Universum
 
+import qualified Data.ByteString as BS
 import qualified Data.ByteString.Lazy as LBS
 
 import           Pos.Binary.Class (Bi (..), Cons (..), Field (..), decodeKnownCborDataItem,
                                    decodeUnknownCborDataItem, deriveSimpleBi,
                                    encodeKnownCborDataItem, encodeListLen,
                                    encodeUnknownCborDataItem, enforceSize,
-                                   serialize)
+                                   serialize')
 import           Pos.Binary.Core ()
 import           Pos.Block.BHelpers ()
 import           Pos.Block.Network (MsgBlock (..), MsgSerializedBlock (..), MsgGetBlocks (..), MsgGetHeaders (..),
@@ -72,9 +73,9 @@ instance Bi MsgBlock where
 -- ```
 -- serialize (MsgBlock b) = serializeMsgSerializedBlock (MsgSerializedBlock $ serialize b)
 -- ```
-serializeMsgSerializedBlock :: MsgSerializedBlock -> LBS.ByteString
+serializeMsgSerializedBlock :: MsgSerializedBlock -> BS.ByteString
 serializeMsgSerializedBlock (MsgSerializedBlock b) = "\x82\x0" <> unSerialized b
-serializeMsgSerializedBlock (MsgNoSerializedBlock t) = serialize (MsgNoBlock t)
+serializeMsgSerializedBlock (MsgNoSerializedBlock t) = serialize' (MsgNoBlock t)
 
 -- deriveSimpleBi is not happy with constructors without arguments
 -- "fake" deriving as per `MempoolMsg`.

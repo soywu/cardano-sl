@@ -17,6 +17,7 @@ import qualified Control.Concurrent.STM as Conc
 import           Control.Exception (Exception (..), throwIO)
 import           Control.Lens (to)
 import           Control.Monad.Except (ExceptT, runExceptT, throwError)
+import qualified Data.ByteString.Lazy as BSL
 import           Data.List.NonEmpty (NonEmpty ((:|)))
 import qualified Data.List.NonEmpty as NE
 import qualified Data.Set as S
@@ -456,7 +457,9 @@ handleGetBlocks logTrace logic recoveryHeadersMessage oq = listenerConv logTrace
                     (length hashes) nodeId )
                 for_ hashes $ \hHash ->
                     getSerializedBlock logic hHash >>= \case
-                        Just b -> sendRaw conv $ serializeMsgSerializedBlock $ MsgSerializedBlock b
+                        -- TODO: we should get lazy bytestring from the db layer to
+                        -- stream the bytes to the network
+                        Just b -> sendRaw conv $ BSL.fromStrict $ serializeMsgSerializedBlock $ MsgSerializedBlock b
                         Nothing  -> do
                             send conv $ MsgNoBlock ("Couldn't retrieve block with hash " <>
                                                     pretty hHash)
